@@ -1,32 +1,124 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="hello">
+    <nav>
+      <label class="logo">Hospital</label>
+      <ul>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/About">About</a></li>
+        <li><a href="/service">service</a></li>
+   
+      </ul>
+      <label id="icon">
+        <i class="fas fa-bars"></i>
+      </label>
+    </nav>
+    <section></section>
+    <router-view />
   </div>
 </template>
 
+<script>
+export default {};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
 }
-
-#nav {
-  padding: 30px;
+.hello {
+  font-family: monstserrat;
 }
-
-#nav a {
+nav {
+  height: 80px;
+  width: 100%;
+  background: #34495e;
+  
+}
+label.logo {
+  font-size: 35px;
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  padding: 0 100px;
+  line-height: 80px;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+nav ul {
+  float: right;
+  margin-right: 40px;
+ padding-right: 100px;
 }
+nav li {
+  display: inline-block;
+  margin: 0 8px;
+  line-height: 80px;
+}
+nav a {
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+a.active,
+a:hover {
+  border: 1px solid white;
+  transition: 0.5s;
+}
+nav #icon {
+  color: white;
+  font-size: 30px;
+  line-height: 80px;
+  float: right;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+@media (max-width: 1048px) {
+  label .logo {
+    font-size: 32px;
+    padding-left: 60px;
+  }
+  nav ul {
+    margin-right: 20px;
+  }
+  nav a {
+    font-size: 17px;
+  }
+}
+@media (max-width: 909px) {
+  nav #icon {
+    display: block;
+  }
+  nav ul {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2f3640;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav li {
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav a {
+    font-size: 20px;
+  }
+  a.active,
+  a:hover {
+    display: block;
+    margin: 50px;
+    line-height: 30px;
+  }
+  nav ul.show{
+    left: 0;
+  }
+}
+ 
 </style>
