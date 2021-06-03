@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import service from '../views/service.vue'
+import formpatient from '../views/formpatient.vue'
+import formcrew from '../views/formcrew.vue'
+import formadimin from '../views/formadimin.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -13,6 +16,18 @@ const routes = [
   {
     path: '/service',
     component: service
+  },
+  {
+    path: '/formpatient',
+    component: formpatient
+  },
+  {
+    path: '/formcrew',
+    component: formcrew
+  },
+  {
+    path: '/formadimin',
+    component: formadimin
   },
   {
     path: '/about',

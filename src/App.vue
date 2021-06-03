@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <nav>
-      <label class="logo">Hospital</label>
+      <label class="logo">Hospital Care</label>
       <ul>
         <li><a href="/" class="active">Home</a></li>
         <li><a href="/About">About</a></li>

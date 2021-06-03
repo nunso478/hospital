@@ -14,31 +14,27 @@
         @click="nightMode = !nightMode"
       ></div>
 
-      <h3 class="title">our services</h3>
+      <h3 class="title">hello administration</h3>
+      <p>Bem-vindo ao Hospital</p>
       <div class="box-container">
         <div class="box">
-          <span class="number"><h3>patient</h3></span>
-          <img src="../assets/patient.png" alt="" />
-
-          <p>Internamento no hospital,
-             realizar analise,
-             se necessario faz-se operações
-            </p>
-          <a href="/formpatient" class="borde">View</a>
+          <span class="number"><h3>Register</h3></span>
+          <img src="../assets/registration.png" alt="" />
+          <p>
+            Regista o novo profile no formulario para poderes trabalhar pelo hospital e administration ou gerir 
+            todo o hospital e controlar os medicos e pacientes cirugias e controlar pagamentos.
+          </p>
+          <a href="/" class="borde">Register</a>
         </div>
         <div class="box">
-          <span class="number"><h3>H. Crew</h3></span>
-          <img src="../assets/crew.jpg" alt="" />
+          <span class="number"><h3>Login</h3></span>
+          <img src="../assets/login.png" alt="" />
 
-          <p>National Emergency Institute Medic and Nurse</p>
-          <a href="/formcrew" class="borde">View</a>
-        </div>
-        <div class="box">
-          <span class="number"><h3>admin</h3></span>
-          <img src="../assets/adim.png" alt="" />
-
-          <p>Admin Hospital is a government administration</p>
-          <a href="/formadimin" class="borde">View</a>
+          <p>
+             Faça login para ver os pedidos de trabalhar para o hospital(medicos ou Nurse),
+             E tambem vê o progresso de cada pacientes aceita ou nao para enviar para o Internamento
+          </p>
+          <a href="/" class="borde">Login</a>
         </div>
       </div>
     </div>
@@ -68,7 +64,7 @@ export default {
 :root {
   --primary-bg-color: #eee;
   --secondary-bg-color: #fff;
-  --primary-text-bg-color: #666;
+  --primary-text-bg-color: rgb(219, 211, 211);
   --secondary-text-bg-color: #999;
 }
 
@@ -101,22 +97,13 @@ export default {
   background: var(--secondary-bg-color);
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 10px rgba(221, 97, 97, 0.3);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   z-index: 0;
 }
-.container .box-container .box i {
-  font-size: 40px;
-  height: 80px;
-  width: 80px;
-  line-height: 80px;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  margin: 10px 0;
-  color: var(--primary-text-bg-color);
-}
+
 .container .box-container .box img {
   font-size: 40px;
   height: 80px;
@@ -207,5 +194,10 @@ export default {
   text-decoration: none;
   color: red;
   font-size: 20px;
+}
+p {
+  display: flex;
+  font-size: 25px;
+  justify-content: center;
 }
 </style>
