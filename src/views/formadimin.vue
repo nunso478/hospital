@@ -24,7 +24,7 @@
             Regista o novo profile no formulario para poderes trabalhar pelo hospital e administration ou gerir 
             todo o hospital e controlar os medicos e pacientes cirugias e controlar pagamentos.
           </p>
-          <a href="/" class="borde">Register</a>
+          <a href="/registeradmi" class="borde">Register</a>
         </div>
         <div class="box">
           <span class="number"><h3>Login</h3></span>
@@ -34,7 +34,7 @@
              Faça login para ver os pedidos de trabalhar para o hospital(medicos ou Nurse),
              E tambem vê o progresso de cada pacientes aceita ou nao para enviar para o Internamento
           </p>
-          <a href="/" class="borde">Login</a>
+          <a href="/loginadmi" class="borde">Login</a>
         </div>
       </div>
     </div>
@@ -192,7 +192,7 @@ export default {
   justify-content: center;
   padding: 10px 25px;
   text-decoration: none;
-  color: red;
+  color: #0f76dd;
   font-size: 20px;
 }
 p {

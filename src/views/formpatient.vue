@@ -21,10 +21,11 @@
           <span class="number"><h3>Register</h3></span>
           <img src="../assets/registration.png" alt="" />
 
-          <p>Regista o teu profile(Nome, bi, o problema de saude, etc..) e 
-              depois esperar para o administration aceita o pedido seu
+          <p>
+            Regista o teu profile(Nome, bi, o problema de saude, etc..) e depois
+            esperar para o administration aceita o pedido seu
           </p>
-          <a href="/" class="borde">Register</a>
+          <a href="/registerpa" class="borde">Register</a>
         </div>
         <div class="box">
           <span class="number"><h3>Login</h3></span>
@@ -34,7 +35,7 @@
             Vai ir ao profile ver as estatisticas, Verificar as Internamento e
             cirugias.
           </p>
-          <a href="/" class="borde">Login</a>
+          <a href="/loginpa" class="borde">Login</a>
         </div>
       </div>
     </div>
@@ -192,7 +193,7 @@ export default {
   justify-content: center;
   padding: 10px 25px;
   text-decoration: none;
-  color: red;
+  color: rgb(53, 140, 223);
   font-size: 20px;
 }
 p {

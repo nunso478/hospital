@@ -25,7 +25,7 @@
             Regista o teu profile(Nome, bi,tipo, etc..) e depois esperar para o
             administration aceita o pedido seu de trabalho
           </p>
-          <a href="/" class="borde">Register</a>
+          <a href="/registerhos" class="borde">Register</a>
         </div>
         <div class="box">
           <span class="number"><h3>Login</h3></span>
@@ -35,7 +35,7 @@
             Vai ir ao profile ver se tens pacientes , Verificar o estato e fazer
             cirugias.
           </p>
-          <a href="/" class="borde">Login</a>
+          <a href="/loginhos" class="borde">Login</a>
         </div>
       </div>
     </div>

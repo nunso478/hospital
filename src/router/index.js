@@ -5,6 +5,12 @@ import service from '../views/service.vue'
 import formpatient from '../views/formpatient.vue'
 import formcrew from '../views/formcrew.vue'
 import formadimin from '../views/formadimin.vue'
+import registerpa from '../views/registerpa.vue'
+import registerhos from '../views/registerhos.vue'
+import registeradmi from '../views/registeradmi.vue'
+import loginadmi from '../views/loginadmi.vue'
+import loginhos from '../views/loginhos.vue'
+import loginpa from '../views/loginpa.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,6 +34,30 @@ const routes = [
   {
     path: '/formadimin',
     component: formadimin
+  },
+  {
+    path: '/registerpa',
+    component: registerpa
+  },
+  {
+    path: '/registerhos',
+    component: registerhos
+  },
+  {
+    path: '/registeradmi',
+    component: registeradmi
+  },
+  {
+    path: '/loginpa',
+    component: loginpa
+  },
+  {
+    path: '/loginhos',
+    component: loginhos
+  },
+  {
+    path: '/loginadmi',
+    component: loginadmi
   },
   {
     path: '/about',

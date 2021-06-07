@@ -22,6 +22,9 @@ new Vue({
   render: function (h) { return h(App) }
 }).$mount('#app')
 
+
+
+// home
 $(document).ready(function(){
 
   $('.fa-bars').click(function(){
@@ -51,3 +54,7 @@ $(document).ready(function(){
   });
 
 });
+
+
+
+//register
