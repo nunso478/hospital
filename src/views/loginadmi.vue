@@ -4,18 +4,30 @@
       <div class="title">
         <h1>Login administration</h1>
       </div>
-       <br>
-       <br>
-        <br>
-        <br> 
-      <form action="">
+      <br />
+      <br />
+      <br />
+      <br />
+      <form action="" @submit.prevent="submit">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username"/>
-            <input type="password" class="input" placeholder="password" name="password" />
+            <input
+              type="text"
+              class="input"
+              placeholder="username"
+              name="username"
+              v-model="username"
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="password"
+              name="password"
+              v-model="password"
+            />
             <button type="submit" class="btn">enviar</button>
-             <br>
-          <a href="/registeradmi" class="taman">You don´t have account?</a>
+            <br />
+            <a href="/registeradmi" class="taman">You don´t have account?</a>
           </div>
         </div>
       </form>
@@ -24,7 +36,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      username:"",
+      password:""
+    }
+  },
+    methods:{
+        submit(){
+            this.$store.commit('setUser',{"username":this.username,"password":this.password});
+            this.$router.push("/profileadmi")
+        }
+    }
+};
 </script>
 
 <style>
@@ -51,7 +76,7 @@ export default {};
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 550px;
-background: #333 !important;
+  background: #333 !important;
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -61,7 +86,6 @@ background: #333 !important;
   color: #c5ecfd;
   text-align: center;
   margin-bottom: 25px;
-   
 }
 
 .contact-form {
@@ -80,7 +104,7 @@ background: #333 !important;
 }
 
 .input-fields .input,
-.msg textarea   {
+.msg textarea {
   margin: 10px 0;
   background: transparent;
   border: 0px;
@@ -116,7 +140,6 @@ background: #333 !important;
   text-decoration: none;
   color: rgb(224, 224, 224) !important;
   font-size: 20px !important;
-  
 }
 
 @media screen and (max-width: 600px) {

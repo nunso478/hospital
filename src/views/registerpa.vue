@@ -17,10 +17,9 @@
             <input type="text" class="input" placeholder="Problema de Saude" name="problema" />
             <input type="text" class="input" placeholder="data Nascimento" name="data" />
             <input type="text" class="input" placeholder="bi" name="bi" />
-            <input type="password" class="input" placeholder="password" name="email" />
+            <input type="password" class="input" placeholder="password" name="password" />
             <button type="submit" class="btn">enviar</button>
          <br>
-     
           <a href="/loginpa" class="taman">you have account?</a>
            </div>
         </div>

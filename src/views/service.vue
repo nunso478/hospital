@@ -38,7 +38,7 @@
           <img src="../assets/adim.png" alt="" />
 
           <p>Admin Hospital is a government administration</p>
-          <a href="/formadimin" class="borde">View</a>
+          <a href="/profileadmi" class="borde">View</a>
         </div>
       </div>
     </div>

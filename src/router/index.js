@@ -11,6 +11,10 @@ import registeradmi from '../views/registeradmi.vue'
 import loginadmi from '../views/loginadmi.vue'
 import loginhos from '../views/loginhos.vue'
 import loginpa from '../views/loginpa.vue'
+import profileadmi from '../views/profileadmi.vue'
+import profilehos from '../views/profilehos.vue'
+import profilepa from '../views/profilepa.vue'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -58,6 +62,29 @@ const routes = [
   {
     path: '/loginadmi',
     component: loginadmi
+  },
+  {
+    path: '/profileadmi',
+    component: profileadmi,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formadimin')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
+  },
+  {
+    path: '/profilehos',
+    component: profilehos
+    
+  },
+  {
+    path: '/profilepa',
+    component: profilepa
+    
   },
   {
     path: '/about',
