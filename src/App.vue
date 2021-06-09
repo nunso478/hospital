@@ -2,12 +2,12 @@
   <div class="hello">
     <nav>
       <label class="logo">Hospital Care</label>
-      <ul>
+      <ul v-if="($store.state.user.length==0)">
         <li><a href="/" class="active">Home</a></li>
         <li><a href="/About">About</a></li>
         <li><a href="/service">service</a></li>
-   
       </ul>
+      <button v-if="!($store.state.user.length==0)" @click="sair" class="btn2">sair</button>
       <label id="icon">
         <i class="fas fa-bars"></i>
       </label>
@@ -19,11 +19,27 @@
 
 <script>
 export default {
-
+  methods:{
+      sair(){
+        this.$store.commit('setUser',[])
+        this.$router.push("/");
+      }
+  }
 };
 </script>
 
 <style>
+.btn2{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding: 10px 25px !important;
+  text-decoration: none;
+  color: rgb(214, 46, 46) !important;
+  font-size: 20px !important;
+  margin-left: 1000px;
+  margin-right: 102px;
+}
 * {
   padding: 0;
   margin: 0;

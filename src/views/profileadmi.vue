@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>sadadasdnasjdsajid</h1>
+    <div><p>{{$store.state.user.username}}</p></div>
   </div>
 </template>
 
