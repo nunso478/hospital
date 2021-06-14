@@ -3,9 +3,9 @@
     <nav>
       <label class="logo">Hospital Care</label>
       <ul v-if="($store.state.user.length==0)">
-        <li><a href="/" class="active">Home</a></li>
-        <li><a href="/About">About</a></li>
-        <li><a href="/service">service</a></li>
+        <li><router-link to="/" class="active">Home</router-link></li>
+        <li><router-link to="/About">About</router-link></li>
+        <li><router-link to="/service">service</router-link></li>
       </ul>
       <button v-if="!($store.state.user.length==0)" @click="sair" class="btn2">sair</button>
       <label id="icon">
@@ -30,6 +30,7 @@ export default {
 
 <style>
 .btn2{
+  /*
   width: 100%;
   display: flex;
   justify-content: right;
@@ -38,7 +39,22 @@ export default {
   color: rgb(214, 46, 46) !important;
   font-size: 20px !important;
   margin-left: 1000px;
-  margin-right: 102px;
+  margin-right: 102px;*/
+  padding: 5px;
+  background: #19B3D3;
+  text-decoration: none;
+  float: right;
+  margin-top: 15px;
+  margin-right: 40px;
+  border-radius: 2px;
+  font-size: 25px;
+  font-weight: 600;
+  color: #fff;
+  transition: 0.5s;
+  /*transition-property:*/
+}
+.btn2:hover{
+  background: #0d9DBB;
 }
 * {
   padding: 0;

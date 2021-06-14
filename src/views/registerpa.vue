@@ -1,5 +1,5 @@
 <template>
-  <div class="hello1">
+  <div class="hello3">
     <div class="wrapper">
       <div class="title">
         <h1>Register Paciente</h1>
@@ -43,10 +43,10 @@ export default {};
   font-family: "Roboto", sans-serif;
 }
 
-.hello1 {
+.hello3 {
   background: url("../assets/back.jpg") no-repeat top center;
   background-size: cover;
-  height: 100vh;
+  height: 130vh;
 }
 
 .wrapper {

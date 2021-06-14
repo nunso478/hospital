@@ -14,7 +14,9 @@ import loginpa from '../views/loginpa.vue'
 import profileadmi from '../views/profileadmi.vue'
 import profilehos from '../views/profilehos.vue'
 import profilepa from '../views/profilepa.vue'
+import medicamento from '../views/medicamento.vue'
 import store from '../store'
+import internamento from '../views/internamento.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -64,6 +66,14 @@ const routes = [
     component: loginadmi
   },
   {
+    path: '/medicamento',
+    component: medicamento
+  },
+  {
+    path: '/internamento',
+    component: internamento
+  },
+  {
     path: '/profileadmi',
     component: profileadmi,
     beforeEnter: (to, from, next) => {
@@ -86,6 +96,7 @@ const routes = [
     component: profilepa
     
   },
+ 
   {
     path: '/about',
     name: 'About',

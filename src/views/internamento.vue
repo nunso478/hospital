@@ -1,21 +1,34 @@
 <template>
-  <div class="hello1">
-    <div class="wrapper">
-      <div class="title">
-        <h1>Login Medic Or Nurse</h1>
+  <div class="hello2">
+   <!--sidebar start-->
+    <div class="siderbar">
+      <center>
+        <img src="../assets/crew.jpg" class="profile_image" alt="" />
+        <h4>{{ $store.state.user.username }}</h4>
+      </center>
+         <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
+        <router-link to="/medicamento"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
+        <router-link to="/internamento"><i class="fas fa-procedures"></i><span>Internamento</span></router-link>
+    </div>
+    <!--sidebar end-->
+
+
+
+    <div class="wrapper1">
+      <div class="title1">
+        <h1>internamento</h1>
       </div>
       <br>
        <br>
         <br>
         <br> 
-      <form action="" @submit.prevent="submit">
-        <div class="contact-form">
-          <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username" v-model="username"/>
-            <input type="password" class="input" placeholder="password" name="password"  v-model="password"/>
+      <form action="">
+        <div class="contact-form1">
+          <div class="input-fields1"> 
+           <textarea type="text" class="input1" placeholder="exame"  name="exame" />
+           
+            <br>
             <button type="submit" class="btn">Enviar</button>
-             <br>
-          <a href="/registerhos" class="taman">You don´t have account?</a>
           </div>
         </div>
       </form>
@@ -26,19 +39,7 @@
 <script>
 export default {
 
-  data(){
-    return{
-      username:"",
-      password:""
-    }
-  },
-    methods:{
-        submit(){
-            this.$store.commit('setUser',{"username":this.username,"password":this.password});
-            this.$router.push("/profilehos")
-        }
-    }
-};
+}
 </script>
 
 <style>
@@ -52,15 +53,15 @@ export default {
   font-family: "Roboto", sans-serif;
 }
 
-.hello1 {
-  background: url("../assets/back.jpg") no-repeat top center;
+.hello2 {
+  background: url("../assets/medicamentos.jpg") no-repeat top center;
   background-size: cover;
-  height: 100vh;
+  height: 87vh;
 }
 
-.wrapper {
+.wrapper1 {
   position: absolute;
-  top: 65%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -71,29 +72,40 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.wrapper .title h1 {
+.wrapper1 .title1 h1 {
   color: #c5ecfd;
   text-align: center;
   margin-bottom: 25px;
-   
+   text-align: left !important;
+   margin-left: -25px;
 }
 
-.contact-form {
+.contact-form1 {
   display: flex;
 }
 
-.input-fields {
+.input-fields1 {
   display: flex;
   flex-direction: column;
   margin-right: 4%;
 }
-
-.input-fields,
-.msg {
+.input-fields1::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: #6f6fb6;
+    clip-path: circle(28% at 5% 0);
+}
+.input-fields1,
+.msg1 {
   width: 48%;
 }
 
-.input-fields .input,
+.input-fields1 .input1,
 .msg textarea   {
   margin: 10px 0;
   background: transparent;
@@ -104,7 +116,17 @@ export default {
   width: 100%;
   font-size: 19px;
 }
-
+.input-fields1 .input2,
+.msg textarea   {
+  margin: 10px 0;
+  background: transparent;
+  border: 0px;
+  border-bottom: 2px solid #c5ecfd;
+  padding: 10px;
+  color: #020202;
+  width: 100%;
+  font-size: 19px;
+}
 .msg textarea {
   height: 212px;
 }
@@ -134,13 +156,13 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-  .contact-form {
+  .contact-form1 {
     flex-direction: column;
   }
   .msg textarea {
     height: 80px;
   }
-  .input-fields,
+  .input-fields1,
   .msg {
     width: 100%;
   }

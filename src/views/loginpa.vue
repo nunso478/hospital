@@ -8,11 +8,11 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form action="" @submit.prevent="submit">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="Email Address" name="email" />
-            <input type="password" class="input" placeholder="password" name="email" />
+            <input type="text" class="input" placeholder="Email Address" name="email" v-model="email" />
+            <input type="password" class="input" placeholder="password" name="password" v-model="password" />
             <button type="submit" class="btn">enviar</button>
              <br>
           <a href="/registerpa" class="taman">You don´t have account?</a>
@@ -24,7 +24,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      username:"",
+      password:""
+    }
+  },
+    methods:{
+        submit(){
+            this.$store.commit('setUser',{"username":this.username,"password":this.password});
+            this.$router.push("/profilepa")
+        }
+    }
+};
 </script>
 
 <style>
