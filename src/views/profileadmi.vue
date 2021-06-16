@@ -6,12 +6,10 @@
         <img src="../assets/adim.png" class="profile_image" alt="" />
         <h4>{{ $store.state.user.username }}</h4>
       </center>
-      <a href="/#"><i class="fas fa-desktop"></i><span>home</span></a>
-      <a href="/#"
-        ><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></a
-      >
-      <a href="/#"><i class="fa fa-h-square"></i><span>cirugias</span></a>
-      <a href="/#"><i class="fa fa-user-md"></i><span>medicos</span></a>
+      <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
+      <router-link to="/recrutar"><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></router-link>
+      <router-link to="#"><i class="fa fa-h-square"></i><span>cirugias</span></router-link>
+     
     </div>
     <!--sidebar end-->
     <div class="content">

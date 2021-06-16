@@ -17,6 +17,8 @@ import profilepa from '../views/profilepa.vue'
 import medicamento from '../views/medicamento.vue'
 import store from '../store'
 import internamento from '../views/internamento.vue'
+import recrutar from '../views/recrutar.vue'
+import formulario from '../views/formulario.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -67,11 +69,29 @@ const routes = [
   },
   {
     path: '/medicamento',
-    component: medicamento
+    component: medicamento,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/profilehos')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
   },
   {
     path: '/internamento',
-    component: internamento
+    component: internamento,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/profilehos')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
   },
   {
     path: '/profileadmi',
@@ -88,15 +108,56 @@ const routes = [
   },
   {
     path: '/profilehos',
-    component: profilehos
-    
+    component: profilehos,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formcrew')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
   },
   {
     path: '/profilepa',
-    component: profilepa
-    
+    component: profilepa,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formpatient')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
   },
- 
+  {
+    path: '/recrutar',
+    component: recrutar,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formadimin')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
+  },
+  {
+    path: '/formulario',
+    component: formulario,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formadimin')
+      } else {
+        console.log('tem login')
+        next()
+      }
+    }
+  },
   {
     path: '/about',
     name: 'About',

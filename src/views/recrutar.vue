@@ -1,47 +1,35 @@
 <template>
-  
-</template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-
-</style><template>
   <div class="body">
     <!--sidebar start-->
     <div class="siderbar">
       <center>
-        <img src="../assets/patient.png" class="profile_image" alt="" />
+        <img src="../assets/adim.png" class="profile_image" alt="" />
         <h4>{{ $store.state.user.username }}</h4>
       </center>
-      <router-link to="/"><i class="fas fa-desktop"></i><span>home</span></router-link>
-      <router-link to="/"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
-      <router-link to="/"><i class="fas fa-procedures"></i><span>Internamento</span></router-link>
+      <router-link to="/profileadmi"
+        ><i class="fas fa-desktop"></i><span>home</span></router-link
+      >
+      <router-link to="/recrutar"
+        ><i class="fa fa-stethoscope"></i
+        ><span>Hospital recruitar</span></router-link
+      >
+      <router-link to="#"
+        ><i class="fa fa-h-square"></i><span>cirugias</span></router-link
+      >
     </div>
     <!--sidebar end-->
     <div class="content">
       <div class="container1">
-        <div class="box-container1">
+        <div class="box-container1">       
           <div class="box1">
-            <span class="number1"><h3>Medicamentos</h3></span>
-            <img src="../assets/medic2.jpg" alt="" />
-            <p>{{ contarPaciente }}</p>
-      
-          </div>
-          <div class="box1">
-            <span class="number1"><h3>Internamento</h3></span>
-            <img src="../assets/patient.png" alt="" />
-            <p>{{ contarCrew }}</p>
-          </div>
-        </div>
+            <span class="number1"><h3>Hospital Crew</h3></span>
+            <b-table striped hover :items="items"  head-variant="dark"></b-table>   
+            <router-link to="/formulario">New Crew</router-link>
+            </div>
+        </div> 
+         
       </div>
-
-   
-    </div>   
+    </div>
   </div>
 </template>
 
@@ -92,7 +80,7 @@ export default {
   font-size: 20px;
 }
 .siderbar a {
-  color: #fff;
+  color: rgb(184, 182, 182);
   display: block;
   width: 100%;
   line-height: 60px;
@@ -173,5 +161,11 @@ export default {
   font-weight: bolder;
   font-size: 50px;
   color: #fff;
+}
+h3 {
+  color: rgb(25, 25, 34);
+}
+a{
+    font-size: 20px;
 }
 </style>

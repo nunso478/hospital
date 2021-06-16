@@ -15,7 +15,7 @@
             <input type="password" class="input" placeholder="password" name="password"  v-model="password"/>
             <button type="submit" class="btn">Enviar</button>
              <br>
-          <a href="/registerhos" class="taman">You don´t have account?</a>
+            <a href="/registerhos" class="taman">You don´t have account?</a>
           </div>
         </div>
       </form>

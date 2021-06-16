@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <nav>
-      <label class="logo">Hospital Care</label>
+      <label class="logo">Hospital  MedicTab</label>
       <ul v-if="($store.state.user.length==0)">
         <li><router-link to="/" class="active">Home</router-link></li>
         <li><router-link to="/About">About</router-link></li>

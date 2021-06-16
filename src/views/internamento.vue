@@ -54,7 +54,7 @@ export default {
 }
 
 .hello2 {
-  background: url("../assets/medicamentos.jpg") no-repeat top center;
+  background: url("../assets/review.jpg") no-repeat top center;
   background-size: cover;
   height: 87vh;
 }
