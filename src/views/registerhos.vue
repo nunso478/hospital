@@ -12,7 +12,7 @@
         <div class="contact-form">
           <div class="input-fields">
             <input type="text" class="input" placeholder="Name"  name="Name" />
-            <input type="text" class="input" placeholder="tipo" name="tipo" />
+            <input type="text" class="input" placeholder="type" name="type" />
             <input type="text" class="input" placeholder="username" name="username"/>
             <input type="password" class="input" placeholder="password" name="password" />
             <input type="text" class="input" placeholder="Degree" name="degree" />
@@ -27,7 +27,16 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+       methods:{
+        submit(){
+              
+        }
+    }
+
+
+};
 </script>
 
 <style>
