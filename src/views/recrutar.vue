@@ -6,28 +6,31 @@
         <img src="../assets/adim.png" class="profile_image" alt="" />
         <h4>{{ $store.state.user.username }}</h4>
       </center>
-      <router-link to="/profileadmi"
-        ><i class="fas fa-desktop"></i><span>home</span></router-link
-      >
-      <router-link to="/recrutar"
-        ><i class="fa fa-stethoscope"></i
-        ><span>Hospital recruitar</span></router-link
-      >
-      <router-link to="#"
-        ><i class="fa fa-h-square"></i><span>cirugias</span></router-link
-      >
+      <router-link to="/profileadmi"><i class="fas fa-desktop"></i><span>home</span></router-link>
+      <router-link to="/recrutar"><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></router-link>
+      <router-link to="#"><i class="fa fa-h-square"></i><span>cirugias</span></router-link>
     </div>
     <!--sidebar end-->
     <div class="content">
       <div class="container1">
         <div class="box-container1">       
-          <div class="box1">
+          <div class="box1" style="max-width:500px">
             <span class="number1"><h3>Hospital Crew</h3></span>
-            <b-table striped hover :items="items"  head-variant="dark"></b-table>   
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <b-table striped hover :items="items"  head-variant="dark">
+                <template #cell(html)="data">
+                    <span @click="editCrew(row)" v-html="data.value" ></span>
+                </template>
+            </b-table>   
             <router-link to="/formulario">New Crew</router-link>
             </div>
         </div> 
-         
       </div>
     </div>
   </div>
@@ -40,17 +43,22 @@ export default {
       contarCrew: 5,
       contarPaciente: 5,
       items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-        { age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { age: 38, first_name: "Jami", last_name: "Carney" },
+        { age: 40, first_name: "Dickerson", last_name: "Macdonald", html: '<i class="fas fa-edit"></i>' },
+        { age: 21, first_name: "Larsen", last_name: "Shaw", html: '<i class="fas fa-edit"></i>' },
+        { age: 89, first_name: "Geneva", last_name: "Wilson", html: '<i class="fas fa-edit"></i>' },
+        { age: 38, first_name: "Jami", last_name: "Carney", html: '<i class="fas fa-edit"></i>' },
       ],
     };
   },
+  methods:{
+      editCrew(data){
+          console.log(data)
+      }
+  }
 };
 </script>
 
-<style>
+<style >
 .body {
   margin: 0;
   padding: 0;
@@ -165,7 +173,5 @@ export default {
 h3 {
   color: rgb(25, 25, 34);
 }
-a{
-    font-size: 20px;
-}
+
 </style>

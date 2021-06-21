@@ -7,7 +7,7 @@
         <h4>{{ $store.state.user.username }}</h4>
       </center>
          <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
-        <router-link to="/medicamento"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
+        <router-link to="/medication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
         <router-link to="/internamento"><i class="fas fa-procedures"></i><span>Internamento</span></router-link>
     </div>
     <!--sidebar end-->

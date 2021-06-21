@@ -33,7 +33,7 @@ export default {
   },
     methods:{
         submit(){
-            this.$store.commit('setUser',{"username":this.username,"password":this.password});
+            this.$store.commit('setUser',{"email":this.username,"password":this.password});
             this.$router.push("/profilepa")
         }
     }

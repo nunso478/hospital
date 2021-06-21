@@ -14,11 +14,13 @@ import loginpa from '../views/loginpa.vue'
 import profileadmi from '../views/profileadmi.vue'
 import profilehos from '../views/profilehos.vue'
 import profilepa from '../views/profilepa.vue'
-import medicamento from '../views/medicamento.vue'
+import medication from '../views/medication.vue'
 import store from '../store'
 import internamento from '../views/internamento.vue'
 import recrutar from '../views/recrutar.vue'
 import formulario from '../views/formulario.vue'
+import showMedication from '../views/showMedication.vue'
+import showinternment from '../views/showinternment.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -68,8 +70,16 @@ const routes = [
     component: loginadmi
   },
   {
-    path: '/medicamento',
-    component: medicamento,
+    path: '/showMedication',
+    component: showMedication
+  },
+  {
+    path: '/showinternment',
+    component: showinternment
+  },
+  {
+    path: '/medication',
+    component: medication,
     beforeEnter: (to, from, next) => {
       if ((store.state.user.length == 0)) {
         console.log('user', store.state.user)

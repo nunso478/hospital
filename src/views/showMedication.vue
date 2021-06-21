@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="body">
     <!--sidebar start-->
     <div class="siderbar">
@@ -18,13 +18,7 @@
             <span class="number1"><h3>Medicamentos</h3></span>
             <img src="../assets/medic2.jpg" alt="" />
            <br>
-           <router-link to="/showMedication">show  Medicamentos</router-link>
-          </div>
-          <div class="box1">
-            <span class="number1"><h3>Internamento</h3></span>
-            <img src="../assets/patient.png" alt="" />
-            <br>
-            <router-link to="/showinternment">show Internamento</router-link>
+            
           </div>
         </div>
       </div>

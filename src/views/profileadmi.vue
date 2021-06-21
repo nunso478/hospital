@@ -8,8 +8,6 @@
       </center>
       <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
       <router-link to="/recrutar"><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></router-link>
-      <router-link to="#"><i class="fa fa-h-square"></i><span>cirugias</span></router-link>
-     
     </div>
     <!--sidebar end-->
     <div class="content">
