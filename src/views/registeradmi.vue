@@ -8,11 +8,11 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form @submit.prevent="signupManager">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username"/>
-            <input type="password" class="input" placeholder="password" name="password" />
+            <input type="text" class="input" placeholder="username" name="username" v-model="username"/>
+            <input type="password" class="input" placeholder="password" name="password" v-model="password"/>
             <button type="submit" class="btn">enviar</button>
               <br>
           <a href="/loginadmi" class="taman">you have account?</a>
@@ -24,7 +24,46 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
+export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
+  methods: {
+    async signupManager() {
+      try {
+        instance
+          .post("/signup", {
+            username: this.username,
+            password: this.password,
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit('setUser',response.data)
+            this.$router.push('/profileadmi');
+          })
+          .catch((error) => {
+            console.log(error);
+             this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+};
 </script>
 
 <style>

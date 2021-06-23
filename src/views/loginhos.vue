@@ -8,7 +8,7 @@
        <br>
         <br>
         <br> 
-      <form action="" @submit.prevent="submit">
+      <form @submit.prevent="loginHospital">
         <div class="contact-form">
           <div class="input-fields">
             <input type="text" class="input" placeholder="username" name="username" v-model="username"/>
@@ -24,21 +24,46 @@
 </template>
 
 <script>
+const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
 export default {
-
-  data(){
-    return{
-      username:"",
-      password:""
-    }
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
   },
-    methods:{
-        submit(){
-            this.$store.commit('setUser',{"username":this.username,"password":this.password});
-            this.$router.push("/profilehos")
-        }
-    }
-};
+  methods: {
+    async loginUser() {
+      try {
+        instance
+          .post("/loginh", {
+            username: this.username,
+            password: this.password,
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit('setUser',response.data)
+            this.$router.push('/profileadmi');
+             
+          })
+          .catch((error) => {
+            console.log(error);
+             this.$router.push({
+              path: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+}
 </script>
 
 <style>

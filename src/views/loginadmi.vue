@@ -8,23 +8,11 @@
       <br />
       <br />
       <br />
-      <form action="" @submit.prevent="submit">
+      <form @submit.prevent="loginUser">
         <div class="contact-form">
           <div class="input-fields">
-            <input
-              type="text"
-              class="input"
-              placeholder="username"
-              name="username"
-              v-model="username"
-            />
-            <input
-              type="password"
-              class="input"
-              placeholder="password"
-              name="password"
-              v-model="password"
-            />
+            <input type="text" class="input" placeholder="username" name="username" v-model="username" />
+            <input type="password"  class="input" placeholder="password" name="password"  v-model="password" />
             <button type="submit" class="btn">enviar</button>
             <br />
             <a href="/registeradmi" class="taman">You don´t have account?</a>
@@ -36,20 +24,47 @@
 </template>
 
 <script>
+const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
 export default {
-  data(){
-    return{
-      username:"",
-      password:""
-    }
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
   },
-    methods:{
-        submit(){
-            this.$store.commit('setUser',{"username":this.username,"password":this.password});
-            this.$router.push("/profileadmi")
-        }
-    }
-};
+  methods: {
+    async loginUser() {
+      try {
+        instance
+          .post("/login", {
+            username: this.username,
+            password: this.password,
+          })
+          .then((response) => {
+         
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit('setUser',response.data)
+            this.$router.push('/profileadmi');
+             
+          })
+          .catch((error) => {
+            console.log(error);
+             this.$router.push({
+              path: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+}
 </script>
 
 <style>

@@ -19,7 +19,7 @@
             <span class="number1"><h3>Paciente</h3></span>
             <img src="../assets/patient.png" alt="" />
             <p>{{ contarCrew }}</p>
-             
+             <b-table striped hover :items="items"  head-variant="dark"></b-table>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
     
   data() {
@@ -43,9 +43,22 @@ export default {
         { age: 89, first_name: "Geneva", last_name: "Wilson" },
         { age: 38, first_name: "Jami", last_name: "Carney" },
       ],
-    };
+    }
+     
   },
- 
+ methods:{
+   getmanager(){
+     axios.get("http://localhost:3000/manager").then(
+       res => {
+         console.log(res);
+         this.items = res.data
+       }
+     )
+   }
+ },
+ mounted(){
+   this.getmanager();
+ }
 };
 </script>
 
