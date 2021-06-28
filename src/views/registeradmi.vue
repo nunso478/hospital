@@ -4,18 +4,30 @@
       <div class="title">
         <h1>Register administration</h1>
       </div>
-       <br>
-       <br>
-        <br>
-        <br> 
+      <br />
+      <br />
+      <br />
+      <br />
       <form @submit.prevent="signupManager">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username" v-model="username"/>
-            <input type="password" class="input" placeholder="password" name="password" v-model="password"/>
+            <input
+              type="text"
+              class="input"
+              placeholder="username"
+              name="username"
+              v-model="username"
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="password"
+              name="password"
+              v-model="password"
+            />
             <button type="submit" class="btn">enviar</button>
-              <br>
-          <a href="/loginadmi" class="taman">you have account?</a>
+            <br />
+            <a href="/loginadmi" class="taman">you have account?</a>
           </div>
         </div>
       </form>
@@ -45,13 +57,14 @@ export default {
             password: this.password,
           })
           .then((response) => {
+            console.log('adsadf');
             localStorage.setItem("jwt", response.data.token);
-            this.$store.commit('setUser',response.data)
-            this.$router.push('/profileadmi');
+            this.$store.commit("setUser", response.data);
+            this.$router.push("/loginadmi");
           })
           .catch((error) => {
             console.log(error);
-             this.$router.push({
+            this.$router.push({
               name: "unauthorized",
               params: {
                 message: error.response.data.message,
@@ -90,7 +103,7 @@ export default {
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 550px;
-background: #333 !important;
+  background: #333 !important;
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -100,7 +113,6 @@ background: #333 !important;
   color: #c5ecfd;
   text-align: center;
   margin-bottom: 25px;
-   
 }
 
 .contact-form {
@@ -119,7 +131,7 @@ background: #333 !important;
 }
 
 .input-fields .input,
-.msg textarea   {
+.msg textarea {
   margin: 10px 0;
   background: transparent;
   border: 0px;

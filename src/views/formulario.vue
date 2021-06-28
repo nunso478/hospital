@@ -13,9 +13,7 @@
         ><i class="fa fa-stethoscope"></i
         ><span>Hospital recruitar</span></router-link
       >
-      <router-link to="#"
-        ><i class="fa fa-h-square"></i><span>cirugias</span></router-link
-      >
+
     </div>
     <!--sidebar end-->
       <div class="wrapper2">
@@ -26,14 +24,15 @@
         <br />
         <br />
         <br />
-        <form action="">
+        <form  @submit.prevent="signupHospitalCrew">
           <div class="contact-form2">
             <div class="input-fields2">
-              <input type="text" class="input2" placeholder="Name" name="Name" />
-              <input type="text" class="input2" placeholder="tipo" name="tipo" />
-              <input type="text" class="input2"  placeholder="username" name="username" />
-              <input type="password"  class="input2" placeholder="password"  name="password" />
-              <input type="text" class="input2"  placeholder="Degree" name="degree"/>
+              <input type="text" class="input2" placeholder="name" name="name" v-model="name" />
+              <input type="text" class="input2" placeholder="tipo" name="type" v-model="type"/>
+              <input type="text" class="input2"  placeholder="username" name="username" v-model="username"/>
+              <input type="password"  class="input2" placeholder="password"  name="password"  v-model="password"/>
+              <input type="text" class="input2"  placeholder="Degree" name="Degree" v-model="Degree"/>
+              <input type="text" class="input2"  placeholder="id_Manager" name="id_Manager" v-model="id_Manager"/>
               <button type="submit" class="btn2">Enviar</button> 
             </div>
           </div>
@@ -44,12 +43,52 @@
 </template>
 
 <script>
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000/manager",
+});
 export default {
   data() {
     return {
-      contarCrew: 5,
-      contarPaciente: 5,
+      name:"",
+      type:"",
+      username: "",
+      password: "",
+      Degree:"",
+      id_Manager:""
     };
+  },
+  methods: {
+    async signupHospitalCrew() {
+      try {
+        instance
+          .post("/HospitalCrew", {
+            name: this.name,
+            type: this.type,
+            username: this.username,
+            password: this.password,
+            Degree: this.Degree,
+            id_Manager: this.id_Manager
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit("setHospitalCrew", response.data);
+            this.$router.push("/recrutar");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
 </script>
@@ -172,7 +211,7 @@ h3 {
 }
 .wrapper2 {
   position: fixed;
-  top: 60%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;

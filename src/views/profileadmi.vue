@@ -16,14 +16,14 @@
           <div class="box1">
             <span class="number1"><h3>Crew</h3></span>
             <img src="../assets/medic2.jpg" alt="" />
-            <p>{{ contarPaciente }}</p>
+            <p>{{ contarCrew }}</p>
             <b-table striped hover :items="items"></b-table>
           </div>
           <div class="box1">
             <span class="number1"><h3>Paciente</h3></span>
             <img src="../assets/patient.png" alt="" />
-            <p>{{ contarCrew }}</p>
-                 <b-table striped hover :items="items"  head-variant="dark"></b-table>
+            <p>{{ contarPaciente }}</p>
+                 <b-table striped hover :items="itemsPatient"  head-variant="dark"></b-table>
           </div>
         </div>
       </div>
@@ -34,20 +34,57 @@
 </template>
 
 <script>
-export default {
+ export default {
   data() {
     return {
       contarCrew: 5,
       contarPaciente: 5,
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-        { age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { age: 38, first_name: "Jami", last_name: "Carney" },
-      ],
+      items: [],
+      itemsPatient:[]
+
     };
   },
-};
+  methods:{
+   getmanagerHospitalCrew(){
+     axios.get("http://localhost:3000/manager/HospitalCrew").then(
+       res => {
+         console.log(res);
+         this.items = res.data
+       }
+     )
+   },
+   getmanagerPatient(){
+     axios.get("http://localhost:3000/manager/Patient").then(
+       res => {
+         console.log(res);
+         this.itemsPatient = res.data
+       }
+     )
+   },
+  getmanagercount(){
+     axios.get("http://localhost:3000/manager/HospitalCrew/count").then(
+       res => {
+         console.log(res);
+         this.contarCrew = res.data.count;
+       }
+     )
+   },
+    getmanagerPatientcount(){
+     axios.get("http://localhost:3000/manager/Patient/count").then(
+       res => {
+         console.log(res);
+         this.contarPaciente = res.data.count;
+       }
+     )
+   }
+   },
+   mounted(){
+     this.getmanagerHospitalCrew();
+     this.getmanagercount();
+     this.getmanagerPatient();
+     this.getmanagerPatientcount();
+   }
+ };
 </script>
 
 <style>
@@ -66,6 +103,7 @@ export default {
   left: 0;
   width: 250px;
   height: 100%;
+  
 }
 .siderbar .profile_image {
   width: 100px;
@@ -130,6 +168,8 @@ export default {
   position: relative;
   overflow: hidden;
   z-index: 0;
+  
+  
 }
 
 .container1 .box-container1 .box1 img {

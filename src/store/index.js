@@ -5,18 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user:[
-      /*{
-      "username":"",
-      "password":"jesus"
-    }*/
-  ]
+    user:[],
+    hospitalCrew:[],
+    patient:[]
 
 
   },
   mutations: {
     setUser(state,user){
       state.user = user
+    },
+    setHospitalCrew(state,crew){
+      state.crew = crew
+    },
+    setPatient(state,patient){
+      state.patient = patient
     }
   },
   actions: {

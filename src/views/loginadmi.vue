@@ -44,7 +44,6 @@ export default {
             password: this.password,
           })
           .then((response) => {
-         
             localStorage.setItem("jwt", response.data.token);
             this.$store.commit('setUser',response.data)
             this.$router.push('/profileadmi');

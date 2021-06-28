@@ -8,13 +8,12 @@
       </center>
       <router-link to="/profileadmi"><i class="fas fa-desktop"></i><span>home</span></router-link>
       <router-link to="/recrutar"><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></router-link>
-      <router-link to="#"><i class="fa fa-h-square"></i><span>cirugias</span></router-link>
     </div>
     <!--sidebar end-->
     <div class="content">
       <div class="container1">
         <div class="box-container1">       
-          <div class="box1" style="max-width:500px">
+          <div class="box1" >
             <span class="number1"><h3>Hospital Crew</h3></span>
             <br>
             <br>
@@ -24,8 +23,9 @@
             <br>
             <br>
             <b-table striped hover :items="items"  head-variant="dark">
-                <template #cell(html)="data">
-                    <span @click="editCrew(row)" v-html="data.value" ></span>
+                <template v-slot:cell(actions)="data">
+                  <b-button variant="primary" size="sm" @click="editar(data.id)">EDITAR</b-button>
+                  <b-button variant="danger" size="sm" @click="deletar(data.id)">Remover</b-button>
                 </template>
             </b-table>   
             <router-link to="/formulario">New Crew</router-link>
@@ -40,21 +40,29 @@
 export default {
   data() {
     return {
-      contarCrew: 5,
-      contarPaciente: 5,
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald", html: '<i class="fas fa-edit"></i>' },
-        { age: 21, first_name: "Larsen", last_name: "Shaw", html: '<i class="fas fa-edit"></i>' },
-        { age: 89, first_name: "Geneva", last_name: "Wilson", html: '<i class="fas fa-edit"></i>' },
-        { age: 38, first_name: "Jami", last_name: "Carney", html: '<i class="fas fa-edit"></i>' },
-      ],
+      items: [{key:'actions',
+              label:'Açoes',
+              sortable:true
+      }],
     };
   },
   methods:{
       editCrew(data){
           console.log(data)
-      }
-  }
+      },
+     getmanager(){
+     axios.get("http://localhost:3000/manager/HospitalCrew").then(
+       res => {
+         console.log(res);
+         this.items = res.data
+       }
+     )
+   }, 
+ 
+  },
+  mounted(){
+     this.getmanager();
+   }
 };
 </script>
 
@@ -138,6 +146,7 @@ export default {
   position: relative;
   overflow: hidden;
   z-index: 0;
+  
 }
 
 .container1 .box-container1 .box1 img {
