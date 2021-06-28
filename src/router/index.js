@@ -21,6 +21,7 @@ import recrutar from '../views/recrutar.vue'
 import formulario from '../views/formulario.vue'
 import showMedication from '../views/showMedication.vue'
 import showinternment from '../views/showinternment.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -177,7 +178,9 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/About.vue')
     }
-  }
+
+  },
+  { path: "*", component: PageNotFound }
 ]
 
 const router = new VueRouter({
