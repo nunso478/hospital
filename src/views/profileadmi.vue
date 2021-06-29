@@ -6,7 +6,7 @@
         <img src="../assets/adim.png" class="profile_image" alt="" />
         <h4>{{ $store.state.user.username }}</h4>
       </center>
-      <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
+      <router-link to="/profileadmi"><i class="fas fa-desktop"></i><span>home</span></router-link>
       <router-link to="/recrutar"><i class="fa fa-stethoscope"></i><span>Hospital recruitar</span></router-link>
     </div>
     <!--sidebar end-->
@@ -34,6 +34,11 @@
 </template>
 
 <script>
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000/manager",
+});
  export default {
   data() {
     return {
@@ -48,6 +53,7 @@
    getmanagerHospitalCrew(){
      axios.get("http://localhost:3000/manager/HospitalCrew").then(
        res => {
+         
          console.log(res);
          this.items = res.data
        }
@@ -78,12 +84,14 @@
      )
    }
    },
-   mounted(){
+ mounted(){
      this.getmanagerHospitalCrew();
      this.getmanagercount();
      this.getmanagerPatient();
      this.getmanagerPatientcount();
    }
+  
+  
  };
 </script>
 
