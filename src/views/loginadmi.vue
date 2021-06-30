@@ -11,8 +11,20 @@
       <form @submit.prevent="loginUser">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username" v-model="username" />
-            <input type="password"  class="input" placeholder="password" name="password"  v-model="password" />
+            <input
+              type="text"
+              class="input"
+              placeholder="username"
+              name="username"
+              v-model="username"
+            />
+            <input
+              type="password"
+              class="input"
+              placeholder="password"
+              name="password"
+              v-model="password"
+            />
             <button type="submit" class="btn">enviar</button>
             <br />
             <a href="/registeradmi" class="taman">You don´t have account?</a>
@@ -42,16 +54,18 @@ export default {
           .post("/login", {
             username: this.username,
             password: this.password,
+            returnSecureToken: true
           })
           .then((response) => {
-            localStorage.setItem("jwt", response.data.token);
-            this.$store.commit('setUser',response.data)
-            this.$router.push('/profileadmi');
-             
+            
+              localStorage.setItem("jwt", response.data.token);
+              this.$store.commit("setUser", response.data);
+              this.$router.push("/profileadmi");
+           
           })
           .catch((error) => {
             console.log(error);
-             this.$router.push({
+            this.$router.push({
               path: "unauthorized",
               params: {
                 message: error.response.data.message,
@@ -63,7 +77,7 @@ export default {
       }
     },
   },
-}
+};
 </script>
 
 <style>

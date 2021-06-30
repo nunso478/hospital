@@ -13,32 +13,28 @@
         ><i class="fa fa-stethoscope"></i
         ><span>Hospital recruitar</span></router-link
       >
-
     </div>
     <!--sidebar end-->
-      <div class="wrapper2">
-        <div class="title2">
-          <h1>Register Medic Or Nurse</h1>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <form  @submit.prevent="signupHospitalCrew">
-          <div class="contact-form2">
-            <div class="input-fields2">
-              <input type="text" class="input2" placeholder="name" name="name" v-model="name" />
-              <input type="text" class="input2" placeholder="tipo" name="type" v-model="type"/>
-              <input type="text" class="input2"  placeholder="username" name="username" v-model="username"/>
-              <input type="password"  class="input2" placeholder="password"  name="password"  v-model="password"/>
-              <input type="text" class="input2"  placeholder="Degree" name="Degree" v-model="Degree"/>
-              <input type="number" class="input2"  placeholder="id_Manager" name="id_Manager" v-model="id_Manager"/>
-              <button type="submit" class="btn2">Enviar</button> 
-            </div>
-          </div>
-        </form>
+    <div class="wrapper2">
+      <div class="title2">
+        <h1>delete Medic Or Nurse</h1>
       </div>
-    
+
+      <form    @submit.prevent="deleteHospitalCrew">
+        <div class="contact-form2">
+          <div class="input-fields2">
+            <input
+              type="number"
+              class="input2"
+              placeholder="id_HospitalCrew"
+              name="id_HospitalCrew"
+              v-model="id_HospitalCrew"
+            />
+            <button type="submit" class="btn2">Enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -51,30 +47,18 @@ const instance = axios.create({
 export default {
   data() {
     return {
-      name:"",
-      type:"",
-      username: "",
-      password: "",
-      Degree:"",
-      id_Manager:""
+      id_HospitalCrew: "",
     };
   },
   methods: {
-    async signupHospitalCrew() {
+    async deleteHospitalCrew() {
       try {
         instance
-          .post("/HospitalCrew", {
-            name: this.name,
-            type: this.type,
-            username: this.username,
-            password: this.password,
-            Degree: this.Degree,
-            id_Manager: this.id_Manager
-          })
+          .delete("/HospitalCrew/" + this.id_HospitalCrew)
           .then((response) => {
+            alert("ID deleted");
             localStorage.setItem("jwt", response.data.token);
             this.$store.commit("setHospitalCrew", response.data);
-            this.$router.push("/recrutar");
           })
           .catch((error) => {
             console.log(error);
@@ -132,7 +116,6 @@ export default {
   box-sizing: border-box;
   transition: 0.5s;
   font-size: 20px;
- 
 }
 .siderbar a:hover {
   background: #19b3d3;
@@ -226,7 +209,6 @@ h3 {
   color: #c5ecfd;
   text-align: center;
   margin-bottom: 25px;
-   
 }
 
 .contact-form2 {
@@ -245,7 +227,7 @@ h3 {
 }
 
 .input-fields2 .input2,
-.msg textarea   {
+.msg textarea {
   margin: 10px 0;
   background: transparent;
   border: 0px;
@@ -281,12 +263,11 @@ h3 {
   text-decoration: none;
   color: rgb(224, 224, 224) !important;
   font-size: 20px !important;
-  
 }
 @media screen and (max-width: 600px) {
-  .contact-form2, .wrapper2 {
+  .contact-form2,
+  .wrapper2 {
     flex-direction: column;
-   
   }
   .msg textarea {
     height: 80px;

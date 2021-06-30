@@ -22,6 +22,8 @@ import formulario from '../views/formulario.vue'
 import showMedication from '../views/showMedication.vue'
 import showinternment from '../views/showinternment.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import deletehos from '../views/deletehos.vue'
+import updateHos from '../views/updateHos.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +31,14 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/deletehos',
+    component: deletehos
+  },
+  {
+    path: '/updateHos',
+    component: updateHos
   },
   {
     path: '/service',

@@ -29,6 +29,12 @@
                 </template>
             </b-table>   
             <router-link to="/formulario">New Crew</router-link>
+            <br>
+             <br>
+             <router-link to="/deletehos">delete Crew</router-link>
+              <br>
+             <br>
+             <router-link to="/updateHos">UPDATE Crew</router-link>
             </div>
         </div> 
       </div>

@@ -55,12 +55,13 @@ export default {
           .post("/signup", {
             username: this.username,
             password: this.password,
+            returnSecureToken: true
           })
           .then((response) => {
             console.log('adsadf');
             localStorage.setItem("jwt", response.data.token);
             this.$store.commit("setUser", response.data);
-            this.$router.push("/loginadmi");
+            this.$router.push("/profileadmi");
           })
           .catch((error) => {
             console.log(error);

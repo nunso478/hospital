@@ -7,7 +7,7 @@
         <li><router-link to="/About">About</router-link></li>
         <li><router-link to="/service">service</router-link></li>
       </ul>
-      <button v-if="!($store.state.user.length==0)" @click="sair" class="btn2">sair</button>
+      <button v-if="!($store.state.user.length==0)" @click="sair" class="btn2">logout</button>
       <label id="icon">
         <i class="fas fa-bars"></i>
       </label>
