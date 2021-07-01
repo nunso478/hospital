@@ -8,14 +8,14 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form @submit.prevent="signuphospital">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="Name"  name="Name" />
-            <input type="text" class="input" placeholder="type" name="type" />
-            <input type="text" class="input" placeholder="username" name="username"/>
-            <input type="password" class="input" placeholder="password" name="password" />
-            <input type="text" class="input" placeholder="Degree" name="degree" />
+            <input type="text" class="input" placeholder="Name"  name="name"   v-model="name"/>
+            <input type="text" class="input" placeholder="type" name="type"   v-model="type"/>
+            <input type="text" class="input" placeholder="username" name="username"  v-model="username"/>
+            <input type="password" class="input" placeholder="password" name="password"  v-model="password" />
+            <input type="text" class="input" placeholder="Degree" name="Degree"  v-model="Degree"/>
             <button type="submit" class="btn">Enviar</button>
              <br>
           <a href="/loginhos" class="taman">you have account?</a>
@@ -28,14 +28,51 @@
 
 <script>
 import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
 export default {
-       methods:{
-        submit(){
-              
-        }
-    }
-
-
+  data() {
+    return {
+      name:"",
+      type:"",
+      username: "",
+      password: "",
+      Degree:"",
+    };
+  },
+  methods: {
+    async signuphospital() {
+      try {
+        instance
+          .post("/signuph", {
+            name: this.name,
+            type: this.type,
+            username: this.username,
+            password: this.password,
+            Degree: this.Degree,
+            returnSecureToken: true
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit("setHospitalCrew", response.data);
+            this.$router.push("/profilehos");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
 };
 </script>
 

@@ -24,6 +24,8 @@ import showinternment from '../views/showinternment.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import deletehos from '../views/deletehos.vue'
 import updateHos from '../views/updateHos.vue'
+import deletePatient from '../views/deletePatient.vue'
+import updateMe from '../views/updateMe.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,10 +34,7 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
-    path: '/deletehos',
-    component: deletehos
-  },
+
   {
     path: '/updateHos',
     component: updateHos
@@ -82,21 +81,39 @@ const routes = [
   },
   {
     path: '/showMedication',
-    component: showMedication
+    component: showMedication,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.patient.length == 0)) {
+        console.log('patient', store.state.patient)
+        next('/formpatient')
+      } else {
+        
+        next()
+      }
+    }
   },
   {
     path: '/showinternment',
-    component: showinternment
+    component: showinternment,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.patient.length == 0)) {
+        console.log('patient', store.state.patient)
+        next('/formpatient')
+      } else {
+        
+        next()
+      }
+    }
   },
   {
     path: '/medication',
     component: medication,
     beforeEnter: (to, from, next) => {
-      if ((store.state.user.length == 0)) {
-        console.log('user', store.state.user)
+      if ((store.state.hospitalCrew.length == 0)) {
+        console.log('hospitalCrew', store.state.hospitalCrew)
         next('/profilehos')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -105,11 +122,11 @@ const routes = [
     path: '/internamento',
     component: internamento,
     beforeEnter: (to, from, next) => {
-      if ((store.state.user.length == 0)) {
-        console.log('user', store.state.user)
+      if ((store.state.hospitalCrew.length == 0)) {
+        console.log('hospitalCrew', store.state.hospitalCrew)
         next('/profilehos')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -122,7 +139,7 @@ const routes = [
         console.log('user', store.state.user)
         next('/formadimin')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -131,11 +148,11 @@ const routes = [
     path: '/profilehos',
     component: profilehos,
     beforeEnter: (to, from, next) => {
-      if ((store.state.user.length == 0)) {
-        console.log('user', store.state.user)
+      if ((store.state.hospitalCrew.length == 0)) {
+        console.log('hospitalCrew', store.state.hospitalCrew)
         next('/formcrew')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -144,11 +161,11 @@ const routes = [
     path: '/profilepa',
     component: profilepa,
     beforeEnter: (to, from, next) => {
-      if ((store.state.user.length == 0)) {
-        console.log('user', store.state.user)
+      if ((store.state.patient.length == 0)) {
+        console.log('patient', store.state.patient)
         next('/formpatient')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -161,7 +178,7 @@ const routes = [
         console.log('user', store.state.user)
         next('/formadimin')
       } else {
-        console.log('tem login')
+        
         next()
       }
     }
@@ -174,7 +191,42 @@ const routes = [
         console.log('user', store.state.user)
         next('/formadimin')
       } else {
-        console.log('tem login')
+        next()
+      }
+    }
+  },
+  {
+    path: '/deletehos',
+    component: deletehos,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.user.length == 0)) {
+        console.log('user', store.state.user)
+        next('/formadimin')
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/deletePatient',
+    component: deletePatient,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.hospitalCrew.length == 0)) {
+        console.log('hospitalCrew', store.state.hospitalCrew)
+        next('/formcrew')
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/updateMe',
+    component: updateMe,
+    beforeEnter: (to, from, next) => {
+      if ((store.state.hospitalCrew.length == 0)) {
+        console.log('hospitalCrew', store.state.hospitalCrew)
+        next('/formcrew')
+      } else {
         next()
       }
     }

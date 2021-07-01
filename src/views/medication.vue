@@ -4,7 +4,7 @@
     <div class="siderbar">
       <center>
         <img src="../assets/crew.jpg" class="profile_image" alt="" />
-        <h4>{{ $store.state.user.username }}</h4>
+        <h4>{{ $store.state.hospitalCrew.username }}</h4>
       </center>
          <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
         <router-link to="/medication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
@@ -22,12 +22,12 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form   @submit.prevent="medication">
         <div class="contact-form1">
           <div class="input-fields1"> 
-           <input type="text" class="input1" placeholder="idPaciente"  name="idPaciente" />
-            <input type="text" class="input1" placeholder="name" name="name" />
-            <input type="text" class="input1" placeholder="numero de medicamento" name="numero_de_medicamento"/>
+           <input type="text" class="input1" placeholder="id_Patient"  name="id_Patient"    v-model="id_Patient"/>
+            <input type="text" class="input1" placeholder="Name" name="Name"    v-model="Name"/>
+            <input type="text" class="input1" placeholder="Number Register" name="Number_Register"   v-model="Number_Register"/>
             
            
             <br>
@@ -40,9 +40,49 @@
 </template>
 
 <script>
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000/hospital",
+});
 export default {
-
-}
+  data() {
+    return {
+      id_Patient:"",
+      Name:"",
+      Number_Register: ""
+    };
+  },
+  methods: {
+    async medication() {
+      try {
+        instance
+          .post("/Medication", {
+            id_Patient: this.id_Patient,
+            Name: this.Name,
+            Number_Register: this.Number_Register
+          })
+          .then((response) => {
+            alert("ID Inserted")
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit("setHospitalCrew", response.data);
+            this.$router.push("/profilehos");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+};
 </script>
 
 <style>

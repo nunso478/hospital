@@ -8,16 +8,16 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form @submit.prevent="RegisterPatient">
         <div class="contact-form">
           <div class="input-fields">
-            <input type="text" class="input" placeholder="Name"  name="Name" />
-            <input type="text" class="input" placeholder="Email Address" name="email" />
-            <input type="number" class="input" placeholder="Phone" name="phone"/>
-            <input type="text" class="input" placeholder="Problema de Saude" name="problema" />
-            <input type="text" class="input" placeholder="data Nascimento" name="data" />
-            <input type="text" class="input" placeholder="bi" name="bi" />
-            <input type="password" class="input" placeholder="password" name="password" />
+            <input type="text" class="input" placeholder="Name"  name="name" v-model="name"/>
+            <input type="text" class="input" placeholder="Email Address" name="email" v-model="email"/>
+            <input type="number" class="input" placeholder="Phone" name="number_phone" v-model="number_phone"/>
+            <input type="text" class="input" placeholder="problem_the_health" name="problem_the_health" v-model="problem_the_health" />
+            <input type="date" class="input" placeholder="data Nascimento" name="data"  v-model="date_of_birth"/>
+            <input type="number" class="input" placeholder="bi" name="bi" v-model="BI" />
+            <input type="password" class="input" placeholder="password" name="password"  v-model="password" />
             <button type="submit" class="btn">enviar</button>
          <br>
           <a href="/loginpa" class="taman">you have account?</a>
@@ -29,7 +29,63 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
+export default {
+  data() {
+    return {
+      name:"",
+      number_phone:"",
+      problem_the_health: "",
+      date_of_birth: "",
+      email:"",
+      password:"",
+      BI:""
+
+    };
+  },
+  methods: {
+    async RegisterPatient() {
+      try {
+        instance
+          .post("/signupp", {
+             name: this.name,
+            number_phone: this.number_phone,
+            problem_the_health: this.problem_the_health,
+            date_of_birth: this.date_of_birth,
+            email: this.email,
+            password: this.password,
+            BI: this.BI,
+            returnSecureToken: true
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit("setPatient", response.data);
+            this.$router.push("/profilepa");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+
+
+
+
+
+};
 </script>
 
 <style>

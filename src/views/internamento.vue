@@ -4,7 +4,7 @@
     <div class="siderbar">
       <center>
         <img src="../assets/crew.jpg" class="profile_image" alt="" />
-        <h4>{{ $store.state.user.username }}</h4>
+        <h4>{{ $store.state.hospitalCrew.username }}</h4>
       </center>
          <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
         <router-link to="/medication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
@@ -22,10 +22,10 @@
        <br>
         <br>
         <br> 
-      <form action="">
+      <form @submit.prevent="Internment">
         <div class="contact-form1">
           <div class="input-fields1"> 
-           <textarea type="text" class="input1" placeholder="exame"  name="exame" />
+           <textarea type="text" class="input1" placeholder="exams"  name="exams" v-model="exams" />
            
             <br>
             <button type="submit" class="btn">Enviar</button>
@@ -37,9 +37,47 @@
 </template>
 
 <script>
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000/hospital",
+});
 export default {
-
-}
+  data() {
+    return {
+      exams:""
+       
+    };
+  },
+  methods: {
+    async Internment() {
+      try {
+        instance
+          .post("/Internment", {
+            exams: this.exams
+            
+          })
+          .then((response) => {
+            alert("ID Inserted")
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit("setHospitalCrew", response.data);
+            this.$router.push("/profilehos");
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push({
+              name: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
+};
 </script>
 
 <style>

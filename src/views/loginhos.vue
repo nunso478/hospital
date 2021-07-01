@@ -8,17 +8,15 @@
        <br>
         <br>
         <br> 
-      <form @submit.prevent="loginHospital">
-        <div class="contact-form">
-          <div class="input-fields">
-            <input type="text" class="input" placeholder="username" name="username" v-model="username"/>
-            <input type="password" class="input" placeholder="password" name="password"  v-model="password"/>
-            <button type="submit" class="btn">Enviar</button>
-             <br>
-            <a href="/registerhos" class="taman">You don´t have account?</a>
+      <form  @submit.prevent="loginHospital">
+          <div class="contact-form2">
+            <div class="input-fields2">
+              <input type="text" class="input2"  placeholder="username" name="username" v-model="username"/>
+              <input type="password"  class="input2" placeholder="password"  name="password"  v-model="password"/>
+              <button type="submit" class="btn2">Enviar</button> 
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
     </div>
   </div>
 </template>
@@ -36,7 +34,7 @@ export default {
     };
   },
   methods: {
-    async loginUser() {
+    async loginHospital() {
       try {
         instance
           .post("/loginh", {
@@ -45,12 +43,13 @@ export default {
           })
           .then((response) => {
             localStorage.setItem("jwt", response.data.token);
-            this.$store.commit('setUser',response.data)
-            this.$router.push('/profileadmi');
+            this.$store.commit('setHospitalCrew',response.data)
+            this.$router.push('/profilehos');
              
           })
           .catch((error) => {
             console.log(error);
+            alert("erro")
              this.$router.push({
               path: "unauthorized",
               params: {

@@ -2,12 +2,13 @@
   <div class="hello">
     <nav>
       <label class="logo">Hospital  MedicTab</label>
-      <ul v-if="($store.state.user.length==0)">
+      <ul v-if="($store.state.user.length==0  && $store.state.hospitalCrew.length==0 && $store.state.patient.length==0)">
         <li><router-link to="/" class="active">Home</router-link></li>
         <li><router-link to="/About">About</router-link></li>
         <li><router-link to="/service">service</router-link></li>
       </ul>
-      <button v-if="!($store.state.user.length==0)" @click="sair" class="btn2">logout</button>
+      <button v-if="!($store.state.user.length==0 && $store.state.hospitalCrew.length==0 && $store.state.patient.length==0)" @click="sair" class="btn2">logout</button>
+      
       <label id="icon">
         <i class="fas fa-bars"></i>
       </label>
@@ -22,6 +23,8 @@ export default {
   methods:{
       sair(){
         this.$store.commit('setUser',[])
+        this.$store.commit('setHospitalCrew',[])
+        this.$store.commit('setPatient',[])
         this.$router.push("/");
       }
   }

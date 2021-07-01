@@ -4,7 +4,7 @@
     <div class="siderbar">
       <center>
         <img src="../assets/patient.png" class="profile_image" alt="" />
-        <h4>{{ $store.state.user.username }}</h4>
+        <h4>{{ $store.state.patient.email }}</h4>
       </center>
       <router-link to="/profilepa"><i class="fas fa-desktop"></i><span>home</span></router-link>
       <router-link to="/showMedication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
@@ -18,7 +18,12 @@
             <span class="number1"><h3>internment</h3></span>
             <img src="../assets/medic2.jpg" alt="" />
            <br>
-            
+              <b-table striped hover :items="items"  head-variant="dark">
+                <template v-slot:cell(actions)="data">
+                  <b-button variant="primary" size="sm" @click="editar(data.id)">EDITAR</b-button>
+                  <b-button variant="danger" size="sm" @click="deletar(data.id)">Remover</b-button>
+                </template>
+            </b-table>
           </div>
         </div>
       </div>
@@ -29,20 +34,34 @@
 </template>
 
 <script>
-export default {
+import axios from "axios";
+ export default {
   data() {
     return {
-      contarCrew: 5,
-      contarPaciente: 5,
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-        { age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { age: 38, first_name: "Jami", last_name: "Carney" },
-      ],
+      items: [{key:'actions',
+              label:'Açoes',
+              sortable:true
+      }],
+      id_intermment:""
     };
   },
-};
+  methods:{
+     getInternment(){
+     axios.get("http://localhost:3000/patient/Internment/",{
+       id_intermment: this.id_intermment
+     }).then(
+       res => {
+         console.log(res);
+         this.items = res.data
+       }
+     )
+   }, 
+ 
+  },
+  mounted(){
+     this.getInternment();
+   }
+}
 </script>
 
 <style>

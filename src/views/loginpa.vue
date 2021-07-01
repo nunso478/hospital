@@ -8,7 +8,7 @@
        <br>
         <br>
         <br> 
-      <form action="" @submit.prevent="submit">
+      <form  @submit.prevent="loginPatient">
         <div class="contact-form">
           <div class="input-fields">
             <input type="text" class="input" placeholder="Email Address" name="email" v-model="email" />
@@ -24,19 +24,48 @@
 </template>
 
 <script>
+import axios from "axios";
+//const axios = require("axios");
+const instance = axios.create({
+  baseURL: "http://localhost:3000",
+});
 export default {
+   
   data(){
     return{
-      username:"",
+      email:"",
       password:""
     }
   },
-    methods:{
-        submit(){
-            this.$store.commit('setUser',{"email":this.username,"password":this.password});
-            this.$router.push("/profilepa")
-        }
-    }
+  methods: {
+    async loginPatient() {
+      try {
+        instance
+          .post("/loginp", {
+            email: this.email,
+            password: this.password,
+          })
+          .then((response) => {
+            localStorage.setItem("jwt", response.data.token);
+            this.$store.commit('setPatient',response.data)
+            this.$router.push('/profilepa');
+             
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("erro")
+             this.$router.push({
+              path: "unauthorized",
+              params: {
+                message: error.response.data.message,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
 };
 </script>
 

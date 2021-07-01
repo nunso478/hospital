@@ -4,7 +4,7 @@
     <div class="siderbar">
       <center>
         <img src="../assets/crew.jpg" class="profile_image" alt="" />
-        <h4>{{ $store.state.user.username }}</h4>
+        <h4>{{ $store.state.hospitalCrew.username }}</h4>
       </center>
         <router-link to="/profilehos"><i class="fas fa-desktop"></i><span>home</span></router-link>
         <router-link to="/medication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
@@ -18,14 +18,27 @@
           <div class="box1">
             <span class="number1"><h3>Paciente</h3></span>
             <img src="../assets/patient.png" alt="" />
-            <p>{{ contarCrew }}</p>
+            <br>
+            <br>
              <b-table striped hover :items="items"  head-variant="dark"></b-table>
+             <br>
+             <router-link to="/deletePatient">delete Patient</router-link>
+            <br>
+             <br>
+             <router-link to="/updateMe">UPDATE Medication</router-link>
           </div>
+          
+  
         </div>
+        
       </div>
         
    
-    </div>   
+    </div>  
+    <br>
+    <br>
+     
+       
   </div>
 </template>
 
@@ -35,29 +48,22 @@ export default {
     
   data() {
     return {
-      contarCrew: 5,
-      contarPaciente: 5,
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
-        { age: 21, first_name: "Larsen", last_name: "Shaw" },
-        { age: 89, first_name: "Geneva", last_name: "Wilson" },
-        { age: 38, first_name: "Jami", last_name: "Carney" },
-      ],
+      items: [],
     }
      
   },
  methods:{
-   getmanager(){
-     axios.get("http://localhost:3000/manager").then(
+   gethospitalPatient(){
+     axios.get("http://localhost:3000/hospital/Patient").then(
        res => {
          console.log(res);
-         this.items = res.data
+         this.items = res.data;
        }
      )
    }
  },
  mounted(){
-   this.getmanager();
+   this.gethospitalPatient();
  }
 };
 </script>

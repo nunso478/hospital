@@ -4,7 +4,7 @@
     <div class="siderbar">
       <center>
         <img src="../assets/patient.png" class="profile_image" alt="" />
-        <h4>{{ $store.state.user.username }}</h4>
+        <h4>{{ $store.state.patient.name }}</h4>
       </center>
       <router-link to="/profilepa"><i class="fas fa-desktop"></i><span>home</span></router-link>
       <router-link to="/showMedication"><i class="fas fa-pills"></i><span>Medicamentos</span></router-link>
