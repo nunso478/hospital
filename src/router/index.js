@@ -109,8 +109,8 @@ const routes = [
     path: '/medication',
     component: medication,
     beforeEnter: (to, from, next) => {
-      if ((store.state.hospitalCrew.length == 0)) {
-        console.log('hospitalCrew', store.state.hospitalCrew)
+      if ((store.state.Crew.length == 0)) {
+        console.log('hospitalCrew', store.state.Crew)
         next('/profilehos')
       } else {
         
@@ -122,8 +122,8 @@ const routes = [
     path: '/internamento',
     component: internamento,
     beforeEnter: (to, from, next) => {
-      if ((store.state.hospitalCrew.length == 0)) {
-        console.log('hospitalCrew', store.state.hospitalCrew)
+      if ((store.state.Crew.length == 0)) {
+        console.log('Crew', store.state.Crew)
         next('/profilehos')
       } else {
         
@@ -148,8 +148,8 @@ const routes = [
     path: '/profilehos',
     component: profilehos,
     beforeEnter: (to, from, next) => {
-      if ((store.state.hospitalCrew.length == 0)) {
-        console.log('hospitalCrew', store.state.hospitalCrew)
+      if ((store.state.Crew.length == 0)) {
+        console.log('Crew', store.state.Crew)
         next('/formcrew')
       } else {
         

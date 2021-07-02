@@ -15,8 +15,8 @@ export default new Vuex.Store({
     setUser(state,user){
       state.user = user
     },
-    setHospitalCrew(state,hospitalCrew){
-      state.hospitalCrew = hospitalCrew
+    setHospitalCrew(state,Crew){
+      state.Crew = Crew
     },
     setPatient(state,patient){
       state.patient = patient
